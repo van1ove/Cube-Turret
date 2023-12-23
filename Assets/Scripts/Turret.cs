@@ -1,9 +1,6 @@
-﻿using System;
-using Unity.VisualScripting;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
-namespace DefaultNamespace
+namespace Player
 {
     public class Turret : MonoBehaviour
     {
@@ -34,7 +31,6 @@ namespace DefaultNamespace
 
             Shoot();
             _time = 0;
-            
         }
         
         void Shoot()
@@ -50,7 +46,5 @@ namespace DefaultNamespace
                 if (health <= 0) ;
             }
         }
-
-
     }
 }
