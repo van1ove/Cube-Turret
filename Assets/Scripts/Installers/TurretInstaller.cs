@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Installers
 {
-    public class TurretSceneInstaller : MonoInstaller
+    public class TurretInstaller : MonoInstaller
     {
         [SerializeField] private Turret turret;
         [SerializeField] private Transform targetsPositions;

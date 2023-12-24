@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Interfaces;
+using UnityEngine;
 
 namespace Player
 {
-    public class Turret : MonoBehaviour
+    public class Turret : MonoBehaviour, IDamageble
     {
         [Header("Stats")]
         [SerializeField] private float rotationSpeed;
@@ -38,7 +39,7 @@ namespace Player
             
         }
         
-        void TakeDamage(int takenDamage)
+        public void TakeDamage(int takenDamage)
         {
             if (health > 0)
             {
