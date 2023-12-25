@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class Turret : MonoBehaviour, IDamageble
+    public class Turret : MonoBehaviour, IDamageble, IAttack
     {
         [Header("Stats")]
         [SerializeField] private float rotationSpeed;
@@ -17,24 +17,26 @@ namespace Player
         public int Health => health;
 
         private float _time;
-        private float _shootDelay;
+        private float _attackDelay;
 
+        private bool _canAttack;
         private void Start()
         {
             _time = 0;
-            _shootDelay = 60f / shootsPerMinute;
+            _attackDelay = 60f / shootsPerMinute;
+            _canAttack = true;
         }
 
         private void Update()
         {
             _time += Time.deltaTime;
-            if (_time <= _shootDelay) return;
+            if (_time <= _attackDelay) return;
 
-            Shoot();
+            if(_canAttack) Attack();
             _time = 0;
         }
         
-        void Shoot()
+        public void Attack()
         {
             
         }
@@ -47,5 +49,7 @@ namespace Player
                 if (health <= 0) ;
             }
         }
+
+        public void ChangeAttackPosibility(bool canAttack) => _canAttack = canAttack;
     }
 }

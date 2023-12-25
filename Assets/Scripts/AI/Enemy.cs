@@ -1,14 +1,16 @@
 ﻿using Interfaces;
 using Player;
 using UnityEngine;
+using Zenject;
 
 namespace Enemy
 {
-    public abstract class Enemy : MonoBehaviour, IDamageble
+    public class Enemy : MonoBehaviour, IDamageble
     {
         [SerializeField] protected EnemyStats enemyStats;
 
-        protected Turret Target;
+        [Inject] protected Turret Target;
+        
         private int _health;
 
         private const float DestructionDelay = 2f;
@@ -16,9 +18,14 @@ namespace Enemy
         public void Start()
         {
             _health = enemyStats.Health;
+            Debug.Log(Target == null);
+            Attack();
         }
 
-        public abstract void Attack();
+        public void Attack()
+        {
+            Debug.Log("Attack");
+        }
 
         public void TakeDamage(int takenDamage)
         {
@@ -33,5 +40,7 @@ namespace Enemy
         {
             Destroy(this);
         }
+        
+        public class EnemyFactory : PlaceholderFactory<Enemy> { }
     }
 }

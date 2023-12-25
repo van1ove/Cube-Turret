@@ -14,7 +14,8 @@ namespace Player
         private int _halfScreenCoordinate;
         private int _currentIndex;
 
-        private float _timer, _delay;
+        private float _timer;
+        private float _delay;
         private void Start()
         {
             Initialize();
@@ -48,10 +49,14 @@ namespace Player
             }
             _turret.transform.rotation = Quaternion.Lerp(_turret.transform.rotation, _newRotation, 
                 _turret.RotationSpeed * Time.deltaTime);
+
+            if(Mathf.Abs(Quaternion.Dot(transform.rotation, _newRotation)) > 0.999f) 
+                _turret.ChangeAttackPosibility(true);
         }
 
         private void UpdateTarget()
         {
+            _turret.ChangeAttackPosibility(false);
             _currentIndex -= (Input.mousePosition.x > _halfScreenCoordinate) ? 1 : -1;
 
             if (_currentIndex > _targets.Count - 1) _currentIndex = 0;
