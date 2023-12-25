@@ -14,7 +14,7 @@ namespace Installers
                 CreateSpawnPosition(targetsPositions.position, turret.transform.localScale.y), 
                 Quaternion.identity, null);
 
-            /*Container.Bind<Turret>().FromInstance(turretInstance).AsSingle();*/
+            Container.Bind<Turret>().FromInstance(turretInstance).AsSingle();
 
             InputController inputController = turretInstance.gameObject.GetComponent<InputController>();
 

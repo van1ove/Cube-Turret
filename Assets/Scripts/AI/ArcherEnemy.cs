@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Enemy
+namespace AI
 {
     public class ArcherEnemy : Enemy
     {
@@ -9,7 +9,6 @@ namespace Enemy
         public void Start()
         {
             base.Start();
-            Debug.Log(nameof(ArcherEnemy));
         }
 
         public class ArcherEnemyFactory : EnemyFactory { }

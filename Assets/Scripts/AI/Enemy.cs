@@ -3,9 +3,9 @@ using Player;
 using UnityEngine;
 using Zenject;
 
-namespace Enemy
+namespace AI
 {
-    public class Enemy : MonoBehaviour, IDamageble
+    public class Enemy : MonoBehaviour, IDamageble, IAttack
     {
         [SerializeField] protected EnemyStats enemyStats;
 
@@ -18,7 +18,6 @@ namespace Enemy
         public void Start()
         {
             _health = enemyStats.Health;
-            Debug.Log(Target == null);
             Attack();
         }
 
