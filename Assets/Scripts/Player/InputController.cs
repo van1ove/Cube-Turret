@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace Player
 {
-    public class InputController : MonoBehaviour, IInitializable
+    public class InputController : MonoBehaviour
     {
         private List<Transform> _targets;
         private Turret _turret;
@@ -18,10 +17,10 @@ namespace Player
         private float _delay;
         private void Start()
         {
-            Initialize();
+            Init();
         }
 
-        public void Initialize()
+        private void Init()
         {
             _halfScreenCoordinate = Screen.width / 2;
             _newRotation = Quaternion.identity;
@@ -57,7 +56,7 @@ namespace Player
         private void UpdateTarget()
         {
             _turret.ChangeAttackPosibility(false);
-            _currentIndex -= (Input.mousePosition.x > _halfScreenCoordinate) ? 1 : -1;
+            _currentIndex -= Input.mousePosition.x > _halfScreenCoordinate ? 1 : -1;
 
             if (_currentIndex > _targets.Count - 1) _currentIndex = 0;
             if (_currentIndex < 0) _currentIndex = _targets.Count - 1;

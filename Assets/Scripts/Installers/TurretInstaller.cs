@@ -13,12 +13,10 @@ namespace Installers
             Turret turretInstance = Container.InstantiatePrefabForComponent<Turret>(turret, 
                 CreateSpawnPosition(targetsPositions.position, turret.transform.localScale.y), 
                 Quaternion.identity, null);
-
+            
+            turretInstance.gameObject.GetComponent<InputController>().SetTargets(targetsPositions);
+            
             Container.Bind<Turret>().FromInstance(turretInstance).AsSingle();
-
-            InputController inputController = turretInstance.gameObject.GetComponent<InputController>();
-
-            inputController.SetTargets(targetsPositions);
         }
 
         private Vector3 CreateSpawnPosition(Vector3 position, float yScale)
